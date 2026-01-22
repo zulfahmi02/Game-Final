@@ -803,6 +803,87 @@
         font-size: 2.5rem;
       }
     }
+
+    /* Custom Login Dropdown Styles */
+    .nav-login-btn {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white !important;
+      padding: 10px 24px !important;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+      color: white !important;
+    }
+
+    .nav-login-btn::after {
+      display: none !important; /* Hide default bootstrap arrow if preferred, or style it */
+    }
+
+    .custom-dropdown-menu {
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      margin-top: 15px !important;
+      animation: dropdownSlideIn 0.3s ease forwards;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      min-width: 220px;
+    }
+
+    @keyframes dropdownSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .custom-dropdown-item {
+      padding: 12px 20px;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      font-weight: 600;
+      color: #475569;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .custom-dropdown-item:hover {
+      background: #f1f5f9;
+      transform: translateX(5px);
+    }
+
+    .custom-dropdown-item.student:hover {
+      color: #d97706;
+      background: #fffbeb;
+    }
+
+    .custom-dropdown-item.teacher:hover {
+      color: #db2777;
+      background: #fce7f3;
+    }
+
+    .custom-dropdown-item.parent:hover {
+      color: #2563eb;
+      background: #eff6ff;
+    }
+
+    .dropdown-icon {
+      font-size: 1.2rem;
+    }
   </style>
 </head>
 
@@ -829,6 +910,32 @@
         <li><a href="#home">Home</a></li>
         <li><a href="#games">Games</a></li>
         <li><a href="#parents">For Parents</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle nav-login-btn" href="#" id="navbarDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <span>🔐</span> Masuk
+          </a>
+          <ul class="dropdown-menu custom-dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item custom-dropdown-item student" href="javascript:void(0)" onclick="showLoginModal()">
+                <span class="dropdown-icon">🎓</span> Login Siswa
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item custom-dropdown-item teacher" href="{{ route('teacher.login') }}">
+                <span class="dropdown-icon">👨‍🏫</span> Login Guru
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item custom-dropdown-item parent" href="{{ route('parent.login') }}">
+                <span class="dropdown-icon">👨‍👩‍👧</span> Login Orang Tua
+              </a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </nav>
   </header>
@@ -837,33 +944,9 @@
     <section class="hero" id="home">
       <div class="hero-content">
         <h1>Belajar Bahasa <br>Sambil Bermain Dengan Permainan Yang Seru!</h1>
-        <p>Pilih cara masuk sesuai peran Anda:</p>
-
-        <div class="login-cards">
-          <!-- Student Login Card -->
-          <div class="login-card student" onclick="showLoginModal()">
-            <div class="login-card-icon">🎮</div>
-            <h3>Login Siswa</h3>
-            <p>Ayo bermain dan belajar bahasa dengan seru!</p>
-            <button class="btn-card btn-student">Masuk Sebagai Siswa</button>
-          </div>
-
-          <!-- Teacher Login Card -->
-          <div class="login-card teacher" onclick="window.location.href='{{ route('teacher.login') }}'">
-            <div class="login-card-icon">👨‍🏫</div>
-            <h3>Login Guru</h3>
-            <p>Monitor perkembangan belajar siswa Anda</p>
-            <button class="btn-card btn-teacher">Masuk Sebagai Guru</button>
-          </div>
-
-          <!-- Parent Login Card -->
-          <div class="login-card parent" onclick="window.location.href='{{ route('parent.login') }}'">
-            <div class="login-card-icon">👨‍👩‍👧‍👦</div>
-            <h3>Login Orang Tua</h3>
-            <p>Pantau perkembangan belajar anak Anda</p>
-            <button class="btn-card btn-parent">Masuk Sebagai Orang Tua</button>
-          </div>
-        </div>
+        <p>Ayo mulai petualangan belajar bahasamu sekarang!</p>
+        
+        <button class="btn-primary" onclick="showLoginModal()">🚀 Mulai Bermain</button>
       </div>
 
       <div class="hero-image">
